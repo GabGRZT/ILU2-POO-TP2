@@ -1,5 +1,7 @@
 package controleur;
 
+import personnages.Gaulois;
+import villagegaulois.Etal;
 import villagegaulois.Village;
 
 public class ControlAcheterProduit {
@@ -15,5 +17,36 @@ public class ControlAcheterProduit {
 		this.controlTrouverEtalVendeur = controlTrouverEtalVendeur;
 	}
 
-	//TODO a completer
+	public String[] vendeur(String produit) {
+		
+		Gaulois[] vendeurs = village.rechercherVendeursProduit(produit);
+		String[] VendeurProd = null;
+		
+		if (vendeurs != null) {
+			VendeurProd = new String[vendeurs.length];
+			for (int i = 0; i<vendeurs.length; i++) {
+				VendeurProd[i] = vendeurs[i].getNom();
+			}
+		}else {
+			System.out.println("Désolé, personne ne vend ce produit au marché.");
+		}
+		return VendeurProd;
+	}
+	
+	public String acheterProduit(String nomVendeur, int quantite) {
+		String resultat="";
+		if(controlVerifierIdentite.verifierIdentite(nomVendeur)) {
+			Etal etal = controlTrouverEtalVendeur.trouverEtalVendeur(nomVendeur);
+			if(etal.getQuantite()==0) {
+				resultat = "0";
+			}else if(quantite>etal.getQuantite()) {
+				resultat = "+";
+			}else if(quantite<=etal.getQuantite()) {
+				resultat = "-=";
+			}
+		}else {
+			resultat = "Pas vendeur";
+		}
+		return resultat;
+	}
 }
