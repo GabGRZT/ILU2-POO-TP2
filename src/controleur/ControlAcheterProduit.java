@@ -28,7 +28,7 @@ public class ControlAcheterProduit {
 				VendeurProd[i] = vendeurs[i].getNom();
 			}
 		}else {
-			System.out.println("Désolé, personne ne vend ce produit au marché.");
+			System.out.println("Desole, personne ne vend ce produit au marche.");
 		}
 		return VendeurProd;
 	}
@@ -45,7 +45,7 @@ public class ControlAcheterProduit {
 				resultat = "-=";
 			}
 		}else {
-			resultat = "Pas vendeur";
+			resultat = "La personne n'est pas un vendeur";
 		}
 		return resultat;
 	}
